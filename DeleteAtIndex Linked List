@@ -1,0 +1,101 @@
+public class DeleteAtIndex_LL {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    static Node head = null;
+    static Node tail = null;
+    static int size = 0;
+    public static void add(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = tail = newNode;
+        }
+        else{
+            newNode.next = head;
+            head = newNode;
+        }
+    }
+    public static int size(){
+        int count = 0;
+        Node temp = head;
+        while(temp != null){
+            count++;
+            temp=temp.next;
+        }
+        return count;
+    }
+    public static void addIndex(int ind, int data){
+        Node newNode = new Node(data);
+        Node temp = head;
+        if(ind == size()){
+            addLast(data);
+            return;
+        }
+        else if(ind == 0){
+            add(data);
+            return;
+        }
+        else if(ind < 0){
+            System.out.println("wrong index");
+            return;
+        }
+        else if(ind > size()){
+            System.out.println("wrong index");
+            return;
+        }
+        for(int i=1;i<=ind-1;i++){
+            temp=temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+    public static void addLast(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = tail = newNode;
+        }
+        else{
+            tail.next = newNode;
+            tail = newNode;
+        }
+    }
+    public static void display(){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+    public static void deleteIndex(int ind){
+        if(ind == 0){
+             head = head.next;
+             size--;
+             return;
+        }
+        Node temp = head;
+        for(int i=1;i<=ind-1;i++){
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        tail = temp;
+        size--;
+    }
+    public static void main(String[] args) {
+        DeleteAtIndex_LL ll = new DeleteAtIndex_LL();
+        ll.add(4);
+        ll.add(7);
+        ll.add(2);
+        ll.add(9);
+        ll.add(3);
+        ll.addIndex(3,10);
+        ll.display();
+        System.out.println();
+        ll.deleteIndex(0);
+        ll.display();
+    }
+}
