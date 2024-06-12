@@ -1,0 +1,50 @@
+public class InsertAtFirst_LL {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    static Node head = null;
+    static Node tail = null;
+    static int size = 0;
+    public static void add(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = tail = newNode;
+        }
+        else{
+        newNode.next = head;
+        head = newNode;
+        }
+        size++;
+    }
+    // public static void add(int data){
+    //     Node newNode = new Node(data);
+    //     if (head == null) {
+    //         head = tail = newNode;
+    //     } else {
+    //         newNode.next = head;
+    //         head = newNode;
+    //     }
+    // }
+    public static void display(){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+    public static void main(String[] args) {
+        InsertAtFirst_LL ll = new InsertAtFirst_LL();
+        ll.add(4);
+        ll.add(5);
+        ll.add(8);
+        ll.add(10);
+        ll.display();
+        System.out.println();
+        System.out.println("Size is: "+ll.size);
+    }
+}
