@@ -1,0 +1,37 @@
+public class InsertAtLast_LL {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    static Node head = null;
+    static Node tail = null;
+    public static void add(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = tail = newNode;
+        }
+        else{
+            tail.next = newNode;
+            tail = newNode;
+        }
+    }
+    public static void display(){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+    public static void main(String[] args) {
+        InsertAtLast_LL ll = new InsertAtLast_LL();
+        ll.add(3);
+        ll.add(8);
+        ll.add(22);
+        ll.add(78);
+        ll.display();
+    }
+}
