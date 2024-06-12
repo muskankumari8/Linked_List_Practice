@@ -1,0 +1,99 @@
+public class GetEle_LL {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    static Node head = null;
+    static Node tail = null;
+    public static void add(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = tail = newNode;
+        }
+        else{
+            newNode.next = head;
+            head = newNode;
+        }
+    }
+    public static int size(){
+        int count = 0;
+        Node temp = head;
+        while(temp != null){
+            count++;
+            temp=temp.next;
+        }
+        return count;
+    }
+    public static void addIndex(int ind, int data){
+        Node newNode = new Node(data);
+        Node temp = head;
+        if(ind == size()){
+            addLast(data);
+            return;
+        }
+        else if(ind == 0){
+            add(data);
+            return;
+        }
+        else if(ind < 0){
+            System.out.println("wrong index");
+            return;
+        }
+        else if(ind > size()){
+            System.out.println("wrong index");
+            return;
+        }
+        for(int i=1;i<=ind-1;i++){
+            temp=temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+    public static void addLast(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = tail = newNode;
+        }
+        else{
+            tail.next = newNode;
+            tail = newNode;
+        }
+    }
+    public static void display(){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+    public static int getEle(int ind){
+        if(ind<0 || ind>size()){
+            System.out.println("wrong index");
+            return -1;
+        }
+        Node temp = head;
+        for(int i=0;i<ind;i++){
+            temp = temp.next;
+        }
+        return temp.data;
+    }
+    public static void main(String[] args) {
+        GetEle_LL ll = new GetEle_LL();
+        ll.add(4);
+        ll.add(7);
+        ll.add(2);
+        ll.add(9);
+        ll.add(3);
+        ll.display();
+        System.out.println();
+        System.out.println("Size is: "+ll.size());
+        ll.addIndex(3,10);
+        ll.display();
+        System.out.println();
+        System.out.println(getEle(4));
+    }
+}
