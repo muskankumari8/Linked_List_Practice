@@ -1,0 +1,46 @@
+public class Length_LL {
+    public static class Node{
+        int data;   // value
+        Node next;  // next node address
+        public Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    
+    public static void displayr(Node head){
+        if(head == null) return;
+        displayr(head.next);
+        System.out.print(head.data+" ");
+    }
+    // public static int length(Node head){
+    //     int count = 0;
+    //     Node current = head;  // Use a separate Node reference to iterate through the list
+    //     while (current != null) {
+    //         count++;            // Increment count for each node
+    //         current = current.next;  // Move to the next node
+    //     }
+    //     return count;
+    // }
+    public static int length(Node head){
+        int count = 0;
+        Node temp = head;
+        while(temp != null){
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+    public static void main(String[] args) {
+        Node node1 = new Node(1);   // head node
+        Node node2 = new Node(2);
+        Node node3 = new Node(3);
+        Node node4 = new Node(4);
+        node1.next=node2;
+        node2.next=node3;
+        node3.next=node4;
+        displayr(node1);
+        System.out.println();
+        System.out.println("Length of Linked List: "+length(node1));
+    }
+}
